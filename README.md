@@ -136,5 +136,75 @@ parseInt('10', 16) // 16
   // instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上。
   ```
 
-  
+## 3. 
+
+```js
+[ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
+```
+
+```js
+// A. an error
+// B. [9, 0]
+// C. [9, NaN]
+// D. [9, undefined]
+
+// Per spec: reduce on an empty array without an initial value throws TypeError
+```
+
+## 4. 
+
+```js
+var val = 'smtg';
+console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
+```
+
+```js
+// A. Value is Something
+// B. Value is Nothing
+// C. NaN
+// D. other
+```
+
+```
+it actually prints 'Something' the + operator has higher precedence than the ternary one.
+```
+
+```js
+var val = 'smtg';
+console.log('Value is ' + val === 'smtg' ? 'Something' : 'Nothing');
+// 'Nothing'
+```
+
+```js
+var val = 'smtg';
+console.log('Value is ' + (val === 'smtg' ? 'Something' : 'Nothing'));
+// 'Value is Something'
+```
+
+## 5. 
+
+```js
+var name = 'World!';
+(function () {
+    if (typeof name === 'undefined') {
+        var name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})();
+```
+
+```js
+// A. Goodbye Jack
+// B. Hello Jack
+// C. Hello undefined
+// D. Hello World
+```
+
+```
+The var declaration is hoisted to the function scope, but the initialization is not.
+```
+
+
 
