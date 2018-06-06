@@ -424,3 +424,71 @@ if ([0]) {
 [0] as a boolean is considered true. Alas, when using it in the comparisons it gets converted in a different way and all goes to hell.
 ```
 
+## 15. 
+
+```js
+[] == []
+```
+
+```js
+// A. true
+// B. false
+// C. error
+// D. other
+```
+
+```
+== is the spawn of satan.
+== 两边都是对象的时候，比较二者是不是指向同一个对象，如果是返回 true,如果不是返回 false
+```
+
+## 16.
+
+```js
+'5' + 3
+'5' - 3
+```
+
+```js
+// A. "53", 2
+// B. 8, 2
+// C. error
+// D. other
+```
+
+```
+Strings know about + and will use it, but they are ignorant of - so in that case the strings get converted to numbers.
+```
+
+## 17.
+
+```js
+1 + - + + + - + 1
+```
+
+```js
+// A. 2
+// B. 1
+// C. error
+// D. other
+```
+
+## 18.
+
+```js
+var ary = Array(3);
+ary[0]=2
+ary.map(function(elem) { return '1'; });
+```
+
+```js
+// A. [2, 1, 1]
+// B. ["1", "1", "1"]
+// C. [2, "1", "1"]
+// D. other
+```
+
+```
+The result is ["1", undefined × 2], as map is only invoked for elements of the Array which have been initialized.
+```
+
