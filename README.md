@@ -275,3 +275,94 @@ var six   = 0.6
 JavaScript does not have precision math, even though sometimes it works correctly.
 ```
 
+## 9.
+
+```js
+function showCase(value) {
+    switch(value) {
+    case 'A':
+        console.log('Case A');
+        break;
+    case 'B':
+        console.log('Case B');
+        break;
+    case undefined:
+        console.log('undefined');
+        break;
+    default:
+        console.log('Do not know!');
+    }
+}
+showCase(new String('A'));
+```
+
+```js
+// A. Case A
+// B. Case B
+// C. Do not know!
+// D. undefined
+```
+
+```
+switch uses === internally and new String(x) !== x
+```
+
+## 10. 
+
+```js
+function showCase2(value) {
+    switch(value) {
+    case 'A':
+        console.log('Case A');
+        break;
+    case 'B':
+        console.log('Case B');
+        break;
+    case undefined:
+        console.log('undefined');
+        break;
+    default:
+        console.log('Do not know!');
+    }
+}
+showCase2(String('A'));
+```
+
+```js
+// A. Case A
+// B. Case B
+// C. Do not know!
+// D. undefined
+```
+
+```
+String(x) does not create an object but does return a string, i.e. typeof String(1) === "string"
+```
+
+## 11. 
+
+```js
+function isOdd(num) {
+    return num % 2 == 1;
+}
+function isEven(num) {
+    return num % 2 == 0;
+}
+function isSane(num) {
+    return isEven(num) || isOdd(num);
+}
+var values = [7, 4, '13', -9, Infinity];
+values.map(isSane);
+```
+
+```js
+// A. [true, true, true, true, true]
+// B. [true, true, true, true, false]
+// C. [true, true, true, false, false]
+// D. [true, true, false, false, false]
+```
+
+```
+Infinity % 2 gives NaN, -9 % 2 gives -1 (modulo operator keeps sign so it's result is only reliable compared to 0)
+```
+
