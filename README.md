@@ -366,3 +366,61 @@ values.map(isSane);
 Infinity % 2 gives NaN, -9 % 2 gives -1 (modulo operator keeps sign so it's result is only reliable compared to 0)
 ```
 
+## 12. 
+
+```js
+parseInt(3, 8)
+parseInt(3, 2)
+parseInt(3, 0)
+```
+
+```js
+// A. 3, 3, 3
+// B. 3, 3, NaN
+// C. 3, NaN, NaN
+// D. other
+```
+
+```
+3 doesn't exist in base 2, so obviously that's a NaN, but what about 0? parseInt will consider a bogus radix and assume you meant 10, so it returns 3.
+```
+
+## 13. 
+
+```js
+Array.isArray( Array.prototype )
+```
+
+```js
+// A. true
+// B. false
+// C. error
+// D. other
+```
+
+```
+Array.prototype is an Array. Go figure.
+```
+
+## 14. 
+
+```js
+var a = [0];
+if ([0]) {
+  console.log(a == true);
+} else {
+  console.log("wut");
+}
+```
+
+```js
+// A. true
+// B. false
+// C. "wut"
+// D. other
+```
+
+```
+[0] as a boolean is considered true. Alas, when using it in the comparisons it gets converted in a different way and all goes to hell.
+```
+
