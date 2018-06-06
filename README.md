@@ -492,3 +492,69 @@ ary.map(function(elem) { return '1'; });
 The result is ["1", undefined × 2], as map is only invoked for elements of the Array which have been initialized.
 ```
 
+## 19.
+
+```js
+function sidEffecting(ary) {
+  ary[0] = ary[2];
+}
+function bar(a,b,c) {
+  c = 10
+  sidEffecting(arguments);
+  return a + b + c;
+}
+bar(1,1,1)
+```
+
+```js
+// A. 3
+// B. 12
+// C. error
+// D. other
+```
+
+```
+The result is 21, in javascript variables are tied to the arguments object so changing the variables changes arguments and changing arguments changes the local variables even when they are not in the same scope.
+```
+
+## 20.
+
+```js
+var a = 111111111111111110000,
+    b = 1111;
+a + b;
+```
+
+```js
+// A. 111111111111111111111
+// B. 111111111111111110000
+// C. NaN
+// D. Infinity
+```
+
+```
+Lack of precision for numbers in JavaScript affects both small and big numbers.
+```
+
+## 21. 
+
+```js
+var x = [].reverse;
+x();
+```
+
+```js
+// A. []
+// B. undefined
+// C. error
+// D. window
+```
+
+```
+[].reverse will return this and when invoked without an explicit receiver object it will default to the default this AKA window
+```
+
+```
+Array.prototype.reverse.call(window)
+```
+
