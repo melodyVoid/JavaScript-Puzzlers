@@ -558,3 +558,63 @@ x();
 Array.prototype.reverse.call(window)
 ```
 
+## 22.
+
+```js
+Number.MIN_VALUE > 0
+```
+
+```js
+// A. false
+// B. true
+// C. error
+// D. other
+```
+
+```
+Number.MIN_VALUE is the smallest value bigger than zero, -Number.MAX_VALUE gets you a reference to something like the most negative number.  5e-324
+```
+
+\* Number.MAX_VALUE：最大的正数
+\* Number.MIN_VALUE：最小的正数
+\* Number.NaN：特殊值，用来表示这不是一个数
+\* Number.NEGATIVE_INFINITY：负无穷大
+\* Number.POSITIVE_INFINITY：正无穷大
+
+如果要表示最小的负数和最大的负数，可以使用-Number.MAX_VALUE和-Number.MIN_VALUE
+
+## 23.
+
+```js
+[1 < 2 < 3, 3 < 2 < 1]
+```
+
+```js
+// A. [true, true]
+// B. [true, false]
+// C. error
+// D. other
+```
+
+```
+This is parsed as (1 > 2) > 3 and (3 > 2) > 1. Than it's implicit conversions at work: true gets intified and is 1, while false gets intified and becomes 0.
+```
+
+## 24.
+
+```js
+// the most classic wtf
+2 == [[[2]]]
+```
+
+```js
+// A. true
+// B. false
+// C. undefined
+// D. other
+```
+
+```
+both objects get converted to strings and in both cases the resulting string is "2"
+```
+
