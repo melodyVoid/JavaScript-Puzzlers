@@ -206,5 +206,72 @@ var name = 'World!';
 The var declaration is hoisted to the function scope, but the initialization is not.
 ```
 
+## 6. 
 
+```js
+var END = Math.pow(2, 53);
+var START = END - 100;
+var count = 0;
+for (var i = START; i <= END; i++) {
+    count++;
+}
+console.log(count);
+```
+
+```js
+// A. 0
+// B. 100
+// C. 101
+// D. other
+```
+
+```
+it goes into an infinite loop, 2^53 is the highest possible number in javascript, and 2^53+1 gives 2^53, so i can never become larger than that.
+```
+
+[javascript 里最大的安全的整数为什么是2的53次方减一？](https://www.zhihu.com/question/29010688)
+
+## 7. 
+
+```js
+var ary = [0,1,2];
+ary[10] = 10;
+ary.filter(function(x) { return x === undefined;});
+```
+
+```js
+// A. [undefined × 7]
+// B. [0, 1, 2, 10]
+// C. []
+// D. [undefined]
+```
+
+```
+Array.prototype.filter is not invoked for the missing elements.
+```
+
+```
+forEach、map、filter、reduce、reduceRight、some、every 中的 callbackfn 只被实际存在的数组元素调用；它不会被缺少的数组元素调用。
+```
+
+## 8. 
+
+```js
+var two   = 0.2
+var one   = 0.1
+var eight = 0.8
+var six   = 0.6
+[two - one == one, eight - six == two]
+```
+
+```js
+// A. [true, true]
+// B. [false, false]
+// C. [true, false]
+// D. other
+```
+
+```
+JavaScript does not have precision math, even though sometimes it works correctly.
+```
 
