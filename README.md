@@ -618,3 +618,63 @@ This is parsed as (1 > 2) > 3 and (3 > 2) > 1. Than it's implicit conversions at
 both objects get converted to strings and in both cases the resulting string is "2"
 ```
 
+## 25.
+
+```js
+3.toString()
+3..toString()
+3...toString()
+```
+
+```js
+// A. "3", error, error
+// B. "3", "3.0", error
+// C. error, "3", error
+// D. other
+```
+
+```
+3.x is a valid syntax to define "3" with a mantissa of x, toString is not a valid number, but the empty string is.
+```
+
+## 26. 
+
+```js
+(function(){
+  var x = y = 1;
+})();
+console.log(y);
+console.log(x);
+```
+
+```js
+// A. 1, 1
+// B. error, error
+// C. 1, error
+// D. other
+```
+
+```
+y is an automatic global, not a function local one.
+```
+
+## 27.
+
+```js
+var a = /123/,
+    b = /123/;
+a == b
+a === b
+```
+
+```
+// A. true, true
+// B. true, false
+// C. false, false
+// D. other
+```
+
+```
+Per spec Two regular expression literals in a program evaluate to regular expression objects that never compare as === to each other even if the two literals' contents are identical.
+```
+
