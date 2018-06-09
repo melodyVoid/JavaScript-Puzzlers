@@ -678,3 +678,5 @@ a === b
 Per spec Two regular expression literals in a program evaluate to regular expression objects that never compare as === to each other even if the two literals' contents are identical.
 ```
 
+# 28
+
