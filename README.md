@@ -759,3 +759,68 @@ foo.name = "bar";
 name is a read only property. Why it doesn't throw an error when assigned, I do not know.
 ```
 
+### 32
+
+```js
+"1 2 3".replace(/\d/g, parseInt)
+```
+
+```
+// A. "1 2 3"
+// B. "0 1 2"
+// C. "NaN 2 3"
+// D. "1 NaN 3"
+```
+
+```
+String.prototype.replace invokes the callback function with multiple arguments where the first is the match, then there is one argument for each capturing group, then there is the offset of the matched substring and finally the original string itself. so parseInt will be invoked with arguments [1, 0], [2, 2], [3, 4].
+```
+
+```
+如果replaceValue是一个函数的话那么，这个函数的arguments会有n+3个参数（n为正则匹配到的次数），参数为：
+1. 匹配到的字符串
+2. 如果正则使用了分组匹配就为多个否则无此参数。
+3. 匹配字符串的对应索引位置
+4. 原始字符串
+```
+
+### 33
+
+```js
+function f() {}
+var parent = Object.getPrototypeOf(f);
+f.name // ?
+parent.name // ?
+typeof eval(f.name) // ?
+typeof eval(parent.name) //  ?
+```
+
+```
+// A. "f", "Empty", "function", "function"
+// B. "f", undefined, "function", error
+// C. "f", "Empty", "function", error
+// D. other
+```
+
+```
+The function prototype object is defined somewhere, has a name, can be invoked, but it's not in the current scope.
+```
+
+### 34 
+
+```js
+var lowerCaseOnly =  /^[a-z]+$/;
+[lowerCaseOnly.test(null), lowerCaseOnly.test()]
+```
+
+```
+// A. [true, false]
+// B. error
+// C. [true, true]
+// D. [false, true]
+```
+
+```
+the argument is converted to a string with the abstract ToString operation, so it is "null" and "undefined".
+```
+
