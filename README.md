@@ -876,3 +876,60 @@ var a = new Date("epoch")
 You get "Invalid Date", which is an actual Date object (a instanceof Date is true). But invalid. This is because the time is internally kept as a Number, which in this case it's NaN.
 ```
 
+### 38
+
+```js
+var a = Function.length,
+    b = new Function().length
+a === b
+```
+
+```
+// A. true
+// B. false
+// C. error
+// D. other
+```
+
+```
+It's false. Function.length is defined to be 1. On the other hand, the length property of the Function prototype object is defined to be 0.
+```
+
+### 39
+
+```js
+var a = Date(0);
+var b = new Date(0);
+var c = new Date();
+[a === b, b === c, a === c]
+```
+
+```
+// A. [true, true, true]
+// B. [false, false, false]
+// C. [false, true, false]
+// D. [true, false, false]
+```
+
+```
+When Date is invoked as a constructor it returns an object relative to the epoch (Jan 01 1970). When the argument is missing it returns the current date. When it is invoked as a function, it returns a String representation of the current time.
+```
+
+### 40
+
+```js
+var min = Math.min(), max = Math.max()
+min < max
+```
+
+```
+// A. true
+// B. false
+// C. error
+// D. other
+```
+
+```
+Math.min returns +Infinity when supplied an empty argument list. Likewise, Math.max returns -Infinity.
+```
+
