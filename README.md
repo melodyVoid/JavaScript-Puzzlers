@@ -933,3 +933,95 @@ min < max
 Math.min returns +Infinity when supplied an empty argument list. Likewise, Math.max returns -Infinity.
 ```
 
+### 41
+
+```js
+function captureOne(re, str) {
+  var match = re.exec(str);
+  return match && match[1];
+}
+var numRe  = /num=(\d+)/ig,
+    wordRe = /word=(\w+)/i,
+    a1 = captureOne(numRe,  "num=1"),
+    a2 = captureOne(wordRe, "word=1"),
+    a3 = captureOne(numRe,  "NUM=2"),
+    a4 = captureOne(wordRe,  "WORD=2");
+[a1 === a2, a3 === a4]
+```
+
+```js
+// A. [true, true]
+// B. [false, false]
+// C. [true, false]
+// D. [false, true]
+```
+
+```
+Regular expressions in JavaScript if defined using the /g flag will carry a state across matches, even if they are actually used on different strings (the lastIndex property). This means a3 will be null as the regular expression was applied starting from the index of the last matched string, even if it was a different one.
+```
+
+### 42
+
+```js
+var a = new Date("2014-03-19"),
+    b = new Date(2014, 03, 19);
+[a.getDay() === b.getDay(), a.getMonth() === b.getMonth()]
+```
+
+```
+// A. [true, true]
+// B. [true, false]
+// C. [false, true]
+// D. [false, false]
+```
+
+```
+JavaScript inherits 40 years old design from C: days are 1-indexed in C's struct tm, but months are 0 indexed. In addition to that, getDay returns the 0-indexed day of the week, to get the 1-indexed day of the month you have to use getDate, which doesn't return a Date object.
+```
+
+### 43
+
+```js
+if ('http://giftwrapped.com/picture.jpg'.match('.gif')) {
+  'a gif file'
+} else {
+  'not a gif file'
+}
+```
+
+```
+// A. 'a gif file'
+// B. 'not a gif file'
+// C. error
+// D. other
+```
+
+```
+String.prototype.match silently converts the string into a regular expression, without escaping it, thus the '.' becomes a metacharacter matching '/'.
+```
+
+#### 44
+
+```js
+function foo(a) {
+    var a;
+    return a;
+}
+function bar(a) {
+    var a = 'bye';
+    return a;
+}
+[foo('hello'), bar('hello')]
+```
+
+```
+// A. ["hello", "hello"]
+// B. ["hello", "bye"]
+// C. ["bye", "bye"]
+// D. other
+```
+
+```
+Variabled declarations are hoisted, but in this case since the variable exists already in the scope, they are removed altogether. In bar() the variable declaration is removed but the assignment remains, so it has effect.
+```
+
