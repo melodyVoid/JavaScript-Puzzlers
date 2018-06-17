@@ -824,3 +824,55 @@ var lowerCaseOnly =  /^[a-z]+$/;
 the argument is converted to a string with the abstract ToString operation, so it is "null" and "undefined".
 ```
 
+### 35
+
+```js
+[,,,].join(", ")
+```
+
+```
+// A. ", , , "
+// B. "undefined, undefined, undefined, undefined"
+// C. ", , "
+// D. ""
+```
+
+```
+JavaScript allows a trailing comma when defining arrays, so that turns out to be an array of three undefined.
+```
+
+### 36
+
+```js
+var a = {class: "Animal", name: 'Fido'};
+a.class
+```
+
+```
+// A. "Animal"
+// B. Object
+// C. an error
+// D. other
+```
+
+```
+The answer is: it depends on the browser. class is a reserved word, but it is accepted as a property name by Chrome, Firefox and Opera. It will fail in IE. On the other hand, everybody will accept most other reserved words (int, private, throws etc) as variable names too, while class is verboten.
+```
+
+### 37
+
+```js
+var a = new Date("epoch")
+```
+
+```
+// A. Thu Jan 01 1970 01:00:00 GMT+0100 (CET)
+// B. current time
+// C. error
+// D. other
+```
+
+```
+You get "Invalid Date", which is an actual Date object (a instanceof Date is true). But invalid. This is because the time is internally kept as a Number, which in this case it's NaN.
+```
+
